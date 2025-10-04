@@ -1,4 +1,5 @@
 #include <iostream>
+#include "mydatastore.h"
 #include <fstream>
 #include <set>
 #include <sstream>
@@ -29,7 +30,7 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
 
 
 
@@ -100,9 +101,38 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
-
-
-
+            else if (cmd == "ADD") {
+                std::string username;
+                int hitIdx;
+                if (!(ss >> username >> hitIdx)) {
+                    std::cout << "Invalid request" << std::endl;
+                } else if (hitIdx < 1 || hitIdx > (int)hits.size()) {
+                    std::cout << "Invalid request" << std::endl;
+                } else {
+                    convToLower(username);
+                    if (!ds.addToCart(username, hits[hitIdx - 1])) {
+                        std::cout << "Invalid request" << std::endl;
+                    }
+                }
+            }
+            else if (cmd == "VIEWCART") {
+                std::string username;
+                if (!(ss >> username)) {
+                    std::cout << "Invalid username" << std::endl;
+                } else {
+                    convToLower(username);
+                    ds.viewCart(username, std::cout);
+                }
+            }
+            else if (cmd == "BUYCART") {
+                std::string username;
+                if (!(ss >> username)) {
+                    std::cout << "Invalid username" << std::endl;
+                } else {
+                    convToLower(username);
+                    ds.buyCart(username);
+                }
+            }
 
             else {
                 cout << "Unknown command" << endl;
