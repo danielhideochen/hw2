@@ -18,6 +18,7 @@ std::set<std::string> Clothing::keywords() const
     std::set<std::string>::const_iterator it = br.begin();
     while (it != br.end()) { keys.insert(*it); ++it; }
 
+    keys.insert("clothing");
     return keys;
 }
 

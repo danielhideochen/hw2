@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
                 } else if (hitIdx < 1 || hitIdx > (int)hits.size()) {
                     std::cout << "Invalid request" << std::endl;
                 } else {
-                    convToLower(username);
+                    username = convToLower(username);
                     if (!ds.addToCart(username, hits[hitIdx - 1])) {
                         std::cout << "Invalid request" << std::endl;
                     }
@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
                 if (!(ss >> username)) {
                     std::cout << "Invalid username" << std::endl;
                 } else {
-                    convToLower(username);
+                    username = convToLower(username);
                     ds.viewCart(username, std::cout);
                 }
             }
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
                 if (!(ss >> username)) {
                     std::cout << "Invalid username" << std::endl;
                 } else {
-                    convToLower(username);
+                    username = convToLower(username);
                     ds.buyCart(username);
                 }
             }

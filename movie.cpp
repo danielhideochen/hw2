@@ -13,9 +13,11 @@ std::set<std::string> Movie::keywords() const
 {
     // name words + genre verbatim (no punctuation splitting)
     std::set<std::string> keys = parseStringToWords(name_);
-    std::string g = genre_;
-    convToLower(g);
+    std::string g = convToLower(genre_);
+
     if (!g.empty()) keys.insert(g);
+
+    keys.insert("movie");
     return keys;
 }
 

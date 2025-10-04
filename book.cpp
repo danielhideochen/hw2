@@ -20,10 +20,10 @@ std::set<std::string> Book::keywords() const
     while (it != auth.end()) { keys.insert(*it); ++it; }
 
     // ISBN verbatim (no splitting), but lowercased for case-insensitive index
-    std::string isbn_lower = isbn_;
-    convToLower(isbn_lower);
+    std::string isbn_lower = convToLower(isbn_);
     if (!isbn_lower.empty()) keys.insert(isbn_lower);
 
+    keys.insert("book");
     return keys;
 }
 

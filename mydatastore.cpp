@@ -12,7 +12,7 @@ MyDataStore::~MyDataStore() {
 }
 
 std::string MyDataStore::toLowerCopy(const std::string& s) const {
-    std::string t = s; convToLower(t); return t;
+    return convToLower(s);
 }
 
 void MyDataStore::addProduct(Product* p) {
@@ -30,7 +30,7 @@ void MyDataStore::addUser(User* u) {
 
 std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type) {
     std::vector<std::string> q = terms;
-    for (size_t i = 0; i < q.size(); ++i) convToLower(q[i]);
+    for (size_t i = 0; i < q.size(); ++i) q[i] = convToLower(q[i]);;
 
     std::set<Product*> result;
     if (q.empty()) return std::vector<Product*>();
